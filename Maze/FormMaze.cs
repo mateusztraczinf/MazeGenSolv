@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Collections.Generic;
+using System.Threading;
 
 namespace Maze
 {
@@ -84,23 +86,28 @@ namespace Maze
             try
             {
                 Cell cellToDraw;
-                for (int i = 0; i < m1.SizeX; i++)
-                {
-                    for (int j = 0; j < m1.SizeY; j++)
-                    {
-                        cellToDraw = m1[i, j];
 
-                        if (cellToDraw.Solve)
-                        {
-                            formGraphics.FillRectangle(
-                                myBrush,
-                                i * multiplier + 3,
-                                j * multiplier + 3,
-                                multiplier - 5,
-                                multiplier - 5);
-                           
-                        }
+                List<Point> list = m1.Solved;
+                int i, j;
+                for(int k = 0; k < list.Count; k++)
+                {
+                    i = list[list.Count-k-1].X;
+                    j = list[list.Count-k-1].Y;
+
+                    cellToDraw = m1[i, j];
+              
+                    if (cellToDraw.Solve)
+                    {
+                        formGraphics.FillRectangle(
+                             myBrush,
+                             i * multiplier + 3,
+                             j * multiplier + 3,
+                             multiplier - 5,
+                             multiplier - 5);
+                          
                     }
+                    Thread.Sleep(10);
+                    pictureBox1.Refresh();
                 }
 
                 pictureBox1.Image = bmp;

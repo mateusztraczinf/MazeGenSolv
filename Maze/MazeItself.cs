@@ -7,7 +7,7 @@ namespace Maze
     class MazeItself
     {
         Cell[,] grid;
-        public List<Cell> Solved = new List<Cell>();
+        public List<Point> Solved = new List<Point>();
 
         public int SizeX
         {
@@ -99,6 +99,8 @@ namespace Maze
                         {
                             grid[item.X, item.Y].Solve = true;    
                         }
+                        Solved = list;
+                       
                         grid[SizeX - 1, SizeY - 1].Solve = true;
                     }
 
