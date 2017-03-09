@@ -12,7 +12,7 @@ namespace Maze
         {
             InitializeComponent();
         }
-
+fdbdfbfb
         MazeItself m1;
 
         private void FormMaze_Load(object sender, EventArgs e)
